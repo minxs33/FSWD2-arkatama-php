@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link href="<?=url()?>assets/css/main.css" rel="stylesheet">
+    <link href="<?=baseUrl()?>/assets/css/main.css" rel="stylesheet">
     <title><?=$title?></title>
     
 </head>
@@ -21,7 +21,10 @@
         <div class="collapse navbar-collapse" id="collapse">
             <ul class="navbar-nav ms-auto my-2 navbar-nav-scroll" style="--bs-scroll-height: 200px;">
               <li class="nav-item">
-                <a class="nav-link text-success fw-medium" href="<?=url()?>">Beranda</a>
+                <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/php_2.php">Pertemuan 17</a>
               </li>
             </ul>
         </div>

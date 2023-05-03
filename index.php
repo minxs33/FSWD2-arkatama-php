@@ -6,11 +6,11 @@ includeWithVariables('views/template/header.php', array('title' => 'Beranda'));
 ?>
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-lg-1 col-md-2 col-sm-9 my-1 text-center">
-            <img src="<?=url()."/assets/img/profile.jpg"?>" style="width:100%; height:auto;">
+        <div class="col-lg-1 col-md-2 col-sm-9 text-center bg-light p-2 border-end-none rounded">
+            <img src="<?=baseUrl()."/assets/img/profile.jpg"?>" style="width:100%; height:auto;">
             <small class="text-muted fw-lighter fs-0">Pas Foto</small>
         </div>
-        <div class="row col-lg-4 col-md-4 col-sm-9">
+        <div class="row col-lg-4 col-md-4 col-sm-9 bg-light p-2 border-start-none rounded">
             <div class="col-lg-6 d-flex flex-column my-1">
                 <label class="text-muted fw-bold">Nama Lengkap</label>
                 <small class="fw-normal">Naufal Fadhilah Alwan</small>
