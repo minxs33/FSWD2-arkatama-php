@@ -112,3 +112,36 @@ function pilihPattern($pattern){
 if(isset($_POST['pattern'])){
     return pilihPattern($_POST['pattern']);
 }
+
+// php 3
+
+
+
+function conn($dbname, $user, $pass)
+{
+    $mysqli = new mysqli($_SERVER['SERVER_NAME'], $user, $pass, $dbname);
+    if(!$mysqli){
+        die();
+        return mysqli_errno($mysqli);
+    }else{
+        return $mysqli;
+    }
+}
+
+function insertCategories($name){
+    $mysqli = conn("ta_magang", "root", "");
+    $now = date('Y-m-d H:i:s');
+
+    $mysqli->query("INSERT INTO categories(name,created_at,updated_at) VALUES('$name','$now','$now')");
+}
+
+function insertProducts($category_id, $name, $description, $price, $status, $created_by) {
+    $mysqli = conn("ta_magang", "root", "");
+    $now = date('Y-m-d H:i:s');
+    $mysqli->query("INSERT INTO products (category_id, name, description, price, status, created_at, updated_at, created_by) VALUES ('$category_id', '$name', '$description', '$price', '$status', '$now', '$now', '$created_by')");
+}
+
+function selectProducts(){
+    $mysqli = conn("ta_magang", "root", "");
+    return $mysqli->query("SELECT c.name as category_name, p.name as products_name, p.description, p.price, p.status FROM products as p INNER JOIN categories as c ON p.category_id = c.id");
+}

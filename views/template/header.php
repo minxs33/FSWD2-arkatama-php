@@ -26,6 +26,9 @@
               <li class="nav-item">
                 <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/php_2.php">Pertemuan 17</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/php_3.php">Pertemuan 18</a>
+              </li>
             </ul>
         </div>
     </div>
