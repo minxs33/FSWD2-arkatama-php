@@ -1,6 +1,6 @@
 <?php 
 
-include "../php_functions/functions.php";
+include "../php/functions.php";
 
 includeWithVariables('template/header.php', array('title' => 'Pert-17 PHP 2'));
 ?>
@@ -127,7 +127,7 @@ includeWithVariables('template/header.php', array('title' => 'Pert-17 PHP 2'));
             var item = e.target.value;
             console.log(item);
             const xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "<?=baseUrl()?>/php_functions/functions.php");
+            xhttp.open("POST", "<?=baseUrl()?>/php/functions.php");
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("pattern="+item);
 

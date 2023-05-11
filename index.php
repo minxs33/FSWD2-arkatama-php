@@ -1,6 +1,6 @@
 <?php 
 
-include "php_functions/functions.php";
+include "php/functions.php";
 
 includeWithVariables('views/template/header.php', array('title' => 'Beranda'));
 ?>

@@ -23,7 +23,7 @@ function includeWithVariables($filePath, $variables = array(), $print = true)
 function baseUrl(){
     $url = url();
     $url = parse_url($url, PHP_URL_SCHEME).'://'.parse_url($url, PHP_URL_HOST); 
-    echo $base_url = trim($url, '/');
+    return $base_url = trim($url, '/');
 }
 
 function url(){
@@ -115,8 +115,6 @@ if(isset($_POST['pattern'])){
 
 // php 3
 
-
-
 function conn($dbname, $user, $pass)
 {
     $mysqli = new mysqli($_SERVER['SERVER_NAME'], $user, $pass, $dbname);
@@ -144,4 +142,21 @@ function insertProducts($category_id, $name, $description, $price, $status, $cre
 function selectProducts(){
     $mysqli = conn("ta_magang", "root", "");
     return $mysqli->query("SELECT c.name as category_name, p.name as products_name, p.description, p.price, p.status FROM products as p INNER JOIN categories as c ON p.category_id = c.id");
+}
+
+// php 4
+
+function selectAll($table){
+    $mysqli = conn("ta_magang", "root", "");
+    return $mysqli->query("SELECT * FROM $table");
+}
+
+function selectUsers(){
+    $mysqli = conn("ta_magang", "root", "");
+    return $mysqli->query("SELECT role_name, users.id as users_id, email,name,avatar,phone,address FROM users JOIN roles ON users.role = roles.id");
+}
+
+function selectUsersBy($field,$value){
+    $mysqli = conn("ta_magang", "root", "");
+    return $mysqli->query("SELECT * FROM users WHERE $field='$value'");
 }

@@ -1,6 +1,6 @@
 <?php 
 
-include "../php_functions/functions.php";
+include "../php/functions.php";
 
 includeWithVariables('template/header.php', array('title' => 'Pert-18 PHP 3'));
 
