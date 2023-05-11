@@ -144,7 +144,9 @@ switch ($action) {
                 $status = 0;
             }
 
-            if (!$status == 1 && move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+            if ($status == 1 && move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+                echo "Your file".$avatar." has been uploaded.";
+            }else{
                 echo "There's an error while uploading your file";
             }
         }
