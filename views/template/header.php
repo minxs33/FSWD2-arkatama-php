@@ -1,6 +1,3 @@
-<?php
- 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +30,15 @@
               <li class="nav-item">
                 <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/pertemuan_19/dashboard.php">Pertemuan 19</a>
               </li>
+              <?php
+                if(!isset($_SESSION['loggedIn'])){
+              ?>
+              <li class="nav-item">
+                <a class="ms-2 btn btn-outline-success fw-medium" href="<?=baseUrl()?>/views/pertemuan_20/login.php"><i class="fas fa-sign-in fa-sm"></i> Login</a>
+              </li>
+              <?php
+                }
+              ?>
             </ul>
         </div>
     </div>

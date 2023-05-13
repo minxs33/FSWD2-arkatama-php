@@ -18,57 +18,72 @@ switch ($action) {
         $created_at = $now;
         $updated_at = $now;
 
-        
-        if(!$_FILES['avatar']['size'] == 0 || !$_FILES['avatar']['name'] == ""){
-            $avatar = basename($_FILES['avatar']['name']);
-            
-            $target_dir = "../assets/avatar/";
-            $target_file = $target_dir . $avatar;
-            $status = 1;
-            
-            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-            
-            $check = getimagesize($_FILES["avatar"]["tmp_name"]);
-            if ($check === false) {
-                echo "File is not an image.";
-                $status = 0;
-            }
+        $getUsers = selectAll("users");
+        $result = $getUsers->fetch_array(MYSQLI_ASSOC);
 
-            if (file_exists($target_file)) {
-                echo "File already exists.";
-                $status = 0;
+        $userVerified = 1;
+        foreach($result as $row){
+            if($row->username == $_POST['username'] || $row->email == $row['email']){
+                $userVerified = 0;
             }
-
-            if ($_FILES["avatar"]["size"] > 500000) {
-                echo "Your file is too large.";
-                $status = 0;
-            }
-
-            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                echo "Sorry, only JPG, JPEG, and PNG files are allowed.";
-                $status = 0;
-            }
-
-            if ($status == 1 && move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
-                $query = $mysqli->query("INSERT INTO users(email,name,role,avatar,phone,address,password,created_at,updated_at) VALUES('$email','$name','$role','$avatar','$phone','$address','$password','$created_at','$updated_at')");
-                if ($query) {
-                    header("Location: ".baseUrl()."/views/pertemuan_19/dashboard.php");
-                    exit;
-                } else {
-                    var_dump($query);
-                    mysqli_error($mysqli);
+        }
+        if($userVerified == 1){
+            if(!$_FILES['avatar']['size'] == 0 || !$_FILES['avatar']['name'] == ""){
+                $avatar = basename($_FILES['avatar']['name']);
+                
+                $target_dir = "../assets/avatar/";
+                $target_file = $target_dir . $avatar;
+                $status = 1;
+                
+                $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+                
+                $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+                if ($check === false) {
+                    echo "File is not an image.";
+                    $status = 0;
                 }
-            } else {
-                echo "Sorry, there was an error uploading your file.";
+
+                if (file_exists($target_file)) {
+                    echo "File already exists.";
+                    $status = 0;
+                }
+
+                if ($_FILES["avatar"]["size"] > 500000) {
+                    echo "Your file is too large.";
+                    $status = 0;
+                }
+
+                if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                    echo "Sorry, only JPG, JPEG, and PNG files are allowed.";
+                    $status = 0;
+                }
+
+                if ($status == 1 && move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+                    $query = $mysqli->query("INSERT INTO users(email,name,role,avatar,phone,address,password,created_at,updated_at) VALUES('$email','$name','$role','$avatar','$phone','$address','$password','$created_at','$updated_at')");
+                    if ($query) {
+                        header("Location: ".baseUrl()."/views/pertemuan_19/dashboard.php");
+                        exit;
+                    } else {
+                        var_dump($query);
+                        mysqli_error($mysqli);
+                    }
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }else{
+                $query = $mysqli->query("INSERT INTO users(email,name,role,phone,address,password,created_at,updated_at) VALUES('$email','$name','$role','$phone','$address','$password','$created_at','$updated_at')");
+                    if($query){
+                        header("Location: ".baseUrl()."/views/pertemuan_19/dashboard.php");
+                        exit;
+                    }else{
+                        var_dump($query);
+                    }
             }
         }else{
-            $query = $mysqli->query("INSERT INTO users(email,name,role,phone,address,password,created_at,updated_at) VALUES('$email','$name','$role','$phone','$address','$password','$created_at','$updated_at')");
-                if($query){
-                    header("Location: ".baseUrl()."/views/pertemuan_19/dashboard.php");
-                    exit;
-                }else{
-                    var_dump($query);
-                }
+            session_start();
+            $_SESSION['warning'] = "Account already exist! Try another username or email";
+            header("Location: ".baseUrl()."/views/pertemuan_19/dashboard.php");
+            exit;
         }
         break;
     case "deleteUsers":

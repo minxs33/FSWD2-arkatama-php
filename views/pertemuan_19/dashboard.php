@@ -2,11 +2,21 @@
 
 include "../../php/functions.php";
 includeWithVariables('../template/header.php', array('title' => 'Pert-19 PHP 4'));
+include "../../php/session.php";
 
 
 ?>
 <div class="container mt-4">
     <div class="card row p-3">
+        <?php
+            if(!empty($_SESSION['warning']))
+            {
+            ?>
+                <div class="alert alert-danger"><?=$_SESSION['warning']?></div>
+            <?php
+            session_destroy();
+            }
+        ?>
         <span class="mb-2" ><a class="btn btn-md btn-success fw-semibold" href="<?=baseUrl()?>/views/pertemuan_19/add_user.php"><i class="fas fa-user-plus"></i> Add User</a></span>
         
         <div class="table-responsive">
