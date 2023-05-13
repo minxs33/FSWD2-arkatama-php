@@ -27,16 +27,36 @@
               <li class="nav-item">
                 <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/php_3.php">Pertemuan 18</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/pertemuan_19/dashboard.php">Pertemuan 19</a>
-              </li>
               <?php
-                if(!isset($_SESSION['loggedIn'])){
+                session_start();
+                if(empty($_SESSION['loggedIn'])){
               ?>
               <li class="nav-item">
                 <a class="ms-2 btn btn-outline-success fw-medium" href="<?=baseUrl()?>/views/pertemuan_20/login.php"><i class="fas fa-sign-in fa-sm"></i> Login</a>
               </li>
               <?php
+                }else{
+                  $getUsers = selectUsersBy("id",$_SESSION['userId']);
+                  $result = $getUsers->fetch_array(MYSQLI_ASSOC);
+                  ?>
+                  <li class="nav-item">
+                    <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/pertemuan_19/dashboard.php">Pertemuan 19</a>
+                  </li>
+                   <li class="nav-item dropdown">
+                      <a class="nav-link text-success fw-medium dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <?php
+                          echo "<img style='width:25px; height:25px;' class='rounded' src='".baseUrl()."/assets/avatar/".$result['avatar']."' alt='".$result['avatar']."'>";
+                      ?>
+                      </a>
+
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li class="px-2"><span class="fw-medium text-success small">Logged in as <?=$result['name']?></span></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item fw-medium small" href="<?=baseUrl()?>/php/user_model.php?action=logout"><i class="fas fa-sign-out-alt fa-sm text-danger"></i> Logout</a></li>
+                      </ul>
+                  </li>
+
+                  <?php
                 }
               ?>
             </ul>

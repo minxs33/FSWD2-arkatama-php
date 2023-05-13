@@ -14,7 +14,7 @@ include "../../php/session.php";
             ?>
                 <div class="alert alert-danger"><?=$_SESSION['warning']?></div>
             <?php
-            session_destroy();
+            unset($_SESSION['warning']);
             }
         ?>
         <span class="mb-2" ><a class="btn btn-md btn-success fw-semibold" href="<?=baseUrl()?>/views/pertemuan_19/add_user.php"><i class="fas fa-user-plus"></i> Add User</a></span>
@@ -49,8 +49,6 @@ include "../../php/session.php";
                                         <?php
                                             if(!empty($row['avatar'])){
                                                 echo "<img style='width:50px; height:auto;' class='img-thumbnail rounded' src='".baseUrl()."/assets/avatar/".$row['avatar']."' alt='".$row['avatar']."'>";
-                                            }else{
-                                                echo "<img style='width:50px; height:auto;' class='img-thumbnail rounded' src='".baseUrl()."/assets/avatar/default.jpg' alt='default avatar'>";
                                             }
                                         ?>
                                     </td>

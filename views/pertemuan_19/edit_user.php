@@ -2,6 +2,7 @@
 
 include "../../php/functions.php";
 includeWithVariables('../template/header.php', array('title' => 'Pert-19 PHP 4 - Edit User'));
+include "../../php/session.php";
 ?>
 <style>
     .btn:focus{

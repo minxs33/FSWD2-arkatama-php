@@ -153,7 +153,7 @@ function selectAll($table){
 
 function selectUsers(){
     $mysqli = conn("ta_magang", "root", "");
-    return $mysqli->query("SELECT role_name, users.id as users_id, email,name,avatar,phone,address FROM users JOIN roles ON users.role = roles.id");
+    return $mysqli->query("SELECT role_name, users.id as users_id, email,name,avatar,phone,address FROM users JOIN roles ON users.role = roles.id ORDER BY users.id ASC");
 }
 
 function selectUsersBy($field,$value){

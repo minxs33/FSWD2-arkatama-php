@@ -21,8 +21,18 @@ include "../../php/functions.php";
 <body>
 
 <div class="d-flex align-items-center justify-content-center vh-100">
-    <form action="<?=baseUrl()?>/php/user_model.php?action=addUsers" method="POST" enctype="multipart/form-data">
+    <form action="<?=baseUrl()?>/php/user_model.php?action=login" method="POST" style="min-width: 400px;">
         <div class="card p-4 d-flex d-column justify-content-center">
+            <?php
+                session_start();
+                if(!empty($_SESSION['warning']))
+                {
+                ?>
+                    <div class="alert alert-danger"><?=$_SESSION['warning']?></div>
+                <?php
+                }
+                session_destroy();
+            ?>
             <div class="d-flex justify-content-center">
                 <h5 class="fw-semibold text-success m-2">Login</h5 class="fw-semibold text-success">
             </div>
