@@ -27,6 +27,9 @@
               <li class="nav-item">
                 <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/php_3.php">Pertemuan 18</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-success fw-medium" href="<?=baseUrl()?>/views/php_6.php">Pertemuan 21</a>
+              </li>
               <?php
                 session_start();
                 if(empty($_SESSION['loggedIn'])){
